@@ -29,6 +29,8 @@ const user5 = new User("Daniele", "Mercanti", 30, "Venezia");
 console.log(user5);
 user2.compareAge(user5);
 
+const pets = [];
+
 class Pet {
   constructor(_petName, _ownerName, _species, _breed) {
     this.petName = _petName;
@@ -38,13 +40,34 @@ class Pet {
   }
   compareOwner(instance) {
     if (this.ownerName === instance.ownerName) {
-      return "true";
+      console.log("True");
     } else {
-      return "false";
+      console.log("False");
     }
   }
 }
 
-document.button.addEventListener("submit", function (event) {
+document.getElementById("myForm").addEventListener("submit", function (event) {
   event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const owner = document.getElementById("owner").value;
+  const species = document.getElementById("species").value;
+  const breed = document.getElementById("breed").value;
+
+  const pet1 = new Pet(name, owner, species, breed);
+  pets.push(pet1);
+
+  displayPetList();
 });
+
+function displayPetList() {
+  const petList = document.querySelector("#petList");
+  petList.innerHTML = "";
+
+  pets.forEach((pet) => {
+    const petDiv = document.createElement("div");
+    petDiv.textContent = `Name: ${pet.petName}, Owner: ${pet.ownerName}, Species: ${pet.species}, Breed: ${pet.breed}`;
+    petList.appendChild(petDiv);
+  });
+}
