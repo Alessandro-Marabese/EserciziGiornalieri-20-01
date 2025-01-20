@@ -29,8 +29,7 @@ const user5 = new User("Daniele", "Mercanti", 30, "Venezia");
 console.log(user5);
 user2.compareAge(user5);
 
-const pets = [];
-
+const petList = [];
 class Pet {
   constructor(_petName, _ownerName, _species, _breed) {
     this.petName = _petName;
@@ -38,33 +37,22 @@ class Pet {
     this.species = _species;
     this.breed = _breed;
   }
-  compareOwner(instance) {
-    if (this.ownerName === instance.ownerName) {
-      console.log("True");
-    } else {
-      console.log("False");
-    }
-  }
 }
-
-document.getElementById("myForm").addEventListener("submit", function (event) {
+const myForm = document.getElementById("myForm");
+myForm.addEventListener("submit", function (event) {
   event.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const owner = document.getElementById("owner").value;
-  const species = document.getElementById("species").value;
-  const breed = document.getElementById("breed").value;
-
-  const pet1 = new Pet(name, owner, species, breed);
-  pets.push(pet1);
-
-  displayPetList();
+  const name = document.getElementById("name");
+  const owner = document.getElementById("owner");
+  const species = document.getElementById("species");
+  const breed = document.getElementById("breed");
+  const newPet = new Pet(name.value, owner.value, species.value, breed.value);
+  petList.push(newPet);
+  console.log(petList);
 });
 
 function displayPetList() {
   const petList = document.querySelector("#petList");
   petList.innerHTML = "";
-
   pets.forEach((pet) => {
     const petDiv = document.createElement("div");
     petDiv.textContent = `Name: ${pet.petName}, Owner: ${pet.ownerName}, Species: ${pet.species}, Breed: ${pet.breed}`;
