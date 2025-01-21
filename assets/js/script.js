@@ -29,33 +29,49 @@ const user5 = new User("Daniele", "Mercanti", 30, "Venezia");
 console.log(user5);
 user2.compareAge(user5);
 
-const petList = [];
+const myForm = document.getElementById("myForm");
+const petList = document.getElementById("pet-list");
+
 class Pet {
-  constructor(_petName, _ownerName, _species, _breed) {
-    this.petName = _petName;
-    this.ownerName = _ownerName;
-    this.species = _species;
-    this.breed = _breed;
+  constructor(name, owner, species, breed) {
+    this.petName = name;
+    this.ownerName = owner;
+    this.species = species;
+    this.breed = breed;
+  }
+
+  static compareOwner(newPet1, newPet2) {
+    if (newPet1.ownerName === newPet2.ownerName) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
-const myForm = document.getElementById("myForm");
+const pets = [];
+
 myForm.addEventListener("submit", function (event) {
   event.preventDefault();
-  const name = document.getElementById("name");
+  //questo è il modo più lungo per selezionarli
+  /*const name = document.getElementById("name");
   const owner = document.getElementById("owner");
   const species = document.getElementById("species");
-  const breed = document.getElementById("breed");
+  const breed = document.getElementById("breed");*/
+  // con questo invece destrutturo e posso ricavarmi gli elementi con una sola riga di codice
+
+  const { name, owner, species, breed } = event.target.elements;
   const newPet = new Pet(name.value, owner.value, species.value, breed.value);
+
   petList.push(newPet);
-  console.log(petList);
+
+  generateNewLi(newPet);
 });
 
-function displayPetList() {
-  const petList = document.querySelector("#petList");
+const generateNewLi = function (obj) {
   petList.innerHTML = "";
   pets.forEach((pet) => {
-    const petDiv = document.createElement("div");
-    petDiv.textContent = `Name: ${pet.petName}, Owner: ${pet.ownerName}, Species: ${pet.species}, Breed: ${pet.breed}`;
-    petList.appendChild(petDiv);
+    const newLi = document.createElement("li");
+    newLi.innerText = `Nome: ${pet.petName}, Proprietario: ${pet.ownerName}, Specie: ${pet.species}, Razza: ${pet.breed}`;
+    petList.appendChild(newLi);
   });
-}
+};

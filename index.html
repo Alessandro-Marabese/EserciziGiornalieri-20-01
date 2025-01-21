@@ -10,15 +10,20 @@
 <body>
     <form id="myForm">
         <label for="name">Nome</label>
-        <input type="text" id="name" placeholder="Inserisci il nome dell'animale">
+        <input type="text" id="name" required placeholder="Inserisci il nome dell'animale">
         <label for="owner">Proprietario</label>
-        <input type="text" id="owner" placeholder="Inserisci il nome del padrone">
+        <input type="text" id="owner" required placeholder="Inserisci il nome del padrone">
         <label for="species">Specie</label>
-        <input type="text" id="species" placeholder="Inserisci il tipo di animale">
+        <input type="text" id="species" required placeholder="Inserisci il tipo di animale">
         <label for="breed">Razza</label>
-        <input type="text" id="breed" placeholder="Inserisci la razza dell'animale">
+        <input type="text" id="breed" required placeholder="Inserisci la razza dell'animale">
         <button type="submit">Aggiungi!</button>
     </form>
+
+    <ul id="pet-list">
+
+    </ul>
+
     <script src="./assets/js/script.js"></script>
 </body>
 
